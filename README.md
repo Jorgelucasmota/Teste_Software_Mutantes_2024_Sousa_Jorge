@@ -22,7 +22,7 @@ pip install pipenv
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/hernanzini/python/mutmut_demo
+git clone https://github.com/hernanzini/mutmut_demo.git
 cd path/to/cloned/repository
 ```
 
