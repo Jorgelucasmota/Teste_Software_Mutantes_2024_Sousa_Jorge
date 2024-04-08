@@ -51,6 +51,12 @@ To run the standard test suite using pytest:
 ```bash
 pytest -v
 ```
+#### Check the coverage
+```bash
+pytest --cov=src
+pytest --cov=src --cov-report term-missing
+pytest --cov=src --cov-report html
+```
 
 ### Running `mutmut`
 To perform mutation testing with mutmut:

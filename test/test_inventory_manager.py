@@ -32,16 +32,19 @@ def test_check_stock(inventory):
 # TODO: ------- DESCOMENTAR ESTA SECCION PARA MATAR A LOS MUTANTES 👾 -------
 
 
-# def test_sell_product_exact_stock(inventory):
-#     assert inventory.sell_product("Apple", 10) is True
-#     assert inventory.inventory["Apple"] == 0
-
-
+# # Este test nos da la cobertura del 100%
 # def test_add_product_already_exists_adds_quantity_correctly(inventory):
 #     original_quantity = inventory.inventory["Apple"]
 #     add_quantity = 5
 #     inventory.add_product("Apple", add_quantity)
-#     assert inventory.inventory["Apple"] == original_quantity + add_quantity
+#     assert (
+#         inventory.inventory["Apple"] == original_quantity + add_quantity
+#     ), "The quantity of the product should correctly increase when it already exists"
+
+
+# def test_sell_product_exact_stock(inventory):
+#     assert inventory.sell_product("Apple", 10) is True
+#     assert inventory.inventory["Apple"] == 0
 
 
 # def test_check_stock_returns_true_for_single_item(inventory):
