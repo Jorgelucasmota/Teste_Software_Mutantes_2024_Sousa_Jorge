@@ -162,5 +162,7 @@ pytest --cov=src
 mutmut run
 mutmut results
 
+# Documentação
 
+Para mais detalhes, consulte o relatório completo https://github.com/Jorgelucasmota/Teste_Software_Mutantes_2024_Sousa_Jorge/blob/main/Jorge_Sousa_atividade_2.pdf.
 
