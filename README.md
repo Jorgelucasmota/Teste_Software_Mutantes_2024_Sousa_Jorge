@@ -159,7 +159,9 @@ Ajuste ou adicione novos casos de teste para melhorar a cobertura e identificar 
 Repita os testes de mutação após as melhorias e compare os resultados:
 
 pytest --cov=src
+
 mutmut run
+
 mutmut results
 
 # Documentação
