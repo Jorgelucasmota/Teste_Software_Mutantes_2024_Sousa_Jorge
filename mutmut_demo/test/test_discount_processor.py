@@ -34,47 +34,41 @@ def test_negative_tax_rate_raises_error():
 def test_get_currency_symbol():
     assert get_currency_symbol() == "USD$"
 
+# Mutante 3
+# Este mutante altera a condição de discount_percentage > 100 para discount_percentage >= 100.
+# Para eliminá-lo, você precisa de um teste que verifique especificamente que um percentual de
+# desconto exatamente igual a 100 é tratado corretamente pelo seu código.
+def test_discount_percentage_of_exactly_100_is_valid():
+    # Assegura que um desconto de 100% reduz o preço base a 0 antes de aplicar o imposto
+    # O resultado esperado dependerá de como você deseja lidar com o imposto nesse caso
+    final_price = calculate_final_price(100, 100, 0.1)
+    expected_price = 0  # Assumindo que o imposto não é aplicado sobre um preço base de 0
+    assert final_price == expected_price, "Um desconto de 100% deve reduzir o preço a 0 antes do imposto"
 
-# TODO: ------- DESCOMENTAR ESTA SECCION PARA MATAR A LOS MUTANTES 👾 -------
+# Mutante 6
+# Este mutante altera a mensagem de erro para um percentual de desconto inválido.
+# Para eliminá-lo, você precisa de um teste que verifique a mensagem de erro exata.
+def test_invalid_discount_percentage_error_message():
+    with pytest.raises(ValueError) as exc_info:
+        calculate_final_price(100, 101, 0.1)
+    assert str(exc_info.value) == "O percentual de desconto deve estar entre 0 e 100"
 
+# Mutante 9
+# Similar ao mutante 10, mas para a taxa de imposto. Você precisa verificar a mensagem
+# de erro para uma taxa de imposto negativa.
+def test_negative_tax_rate_error_message():
+    with pytest.raises(ValueError) as exc_info:
+        calculate_final_price(100, 10, -0.1)
+    assert str(exc_info.value) == "A taxa de imposto deve ser positiva"
 
-# # Mutante 3
-# # Este mutante cambia la condición discount_percentage > 100 a discount_percentage >= 100.
-# # Para matarlo, necesitas una prueba que verifique específicamente que un porcentaje
-# # de descuento de exactamente 100 es manejado correctamente por tu código.
-# def test_discount_percentage_of_exactly_100_is_valid():
-#     # Asegura que un descuento del 100% reduce el precio base a 0 antes de aplicar el impuesto
-#     # El resultado esperado dependerá de cómo desees manejar el impuesto en este caso
-#     final_price = calculate_final_price(100, 100, 0.1)
-#     expected_price = 0  # Asumiendo que el impuesto no se aplica sobre un precio base de 0
-#     assert final_price == expected_price, "A 100% discount should reduce the price to 0 before tax"
+# Mutante 20
+# Este mutante altera a precisão do arredondamento de 2 para 3 casas decimais.
+# Para eliminá-lo, você pode adicionar um teste que verifique que o arredondamento
+# é realizado corretamente para duas casas decimais.
+def test_rounding_to_two_decimals():
+    # Usar um preço, desconto e taxa de imposto que resultem em um valor não arredondado diretamente para duas casas decimais.
+    assert calculate_final_price(100, 10, 0.12345) == 101.11
 
+# Incorporando esses testes adicionais, você deve ser capaz de "eliminar" os mutantes sobreviventes e, portanto,
+# melhorar a cobertura e a robustez dos seus testes unitários.
 
-# # Mutante 6
-# # Este mutante altera el mensaje de error para un porcentaje de descuento inválido.
-# # Para matarlo, necesitas una prueba que verifique el mensaje de error exacto.
-# def test_invalid_discount_percentage_error_message():
-#     with pytest.raises(ValueError) as exc_info:
-#         calculate_final_price(100, 101, 0.1)
-#     assert str(exc_info.value) == "Discount percentage must be between 0 and 100"
-
-
-# # Mutante 9
-# # Similar al mutante 10, pero para la tasa de impuestos. Necesitas verificar el mensaje
-# # de error para una tasa de impuestos negativa.
-# def test_negative_tax_rate_error_message():
-#     with pytest.raises(ValueError) as exc_info:
-#         calculate_final_price(100, 10, -0.1)
-#     assert str(exc_info.value) == "Tax rate must be positive"
-
-
-# # Mutante 20
-# # Este mutante altera la precisión del round de 2 a 3. Para matarlo, puedes agregar
-# # una prueba que verifique que el redondeo se realiza correctamente a dos decimales.
-# def test_rounding_to_two_decimals():
-#     # Usar un precio, descuento y tasa de impuesto que resulten en un valor no redondeado directamente a dos decimales.
-#     assert calculate_final_price(100, 10, 0.12345) == 101.11
-
-
-# # Incorporando estos tests adicionales, deberías ser capaz de "matar" los mutantes sobrevivientes y, por lo tanto,
-# # mejorar la cobertura y robustez de tus pruebas unitarias.
